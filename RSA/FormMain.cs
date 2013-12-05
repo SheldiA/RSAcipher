@@ -46,7 +46,7 @@ namespace RSA
 
         private void bt_calculate_Click(object sender, EventArgs e)
         {
-            FileStream sr = new FileStream(tb_messageFile.Text,FileMode.Open);
+            /*FileStream sr = new FileStream(tb_messageFile.Text,FileMode.Open);
             FileStream sw = new FileStream(tb_cipherFile.Text,FileMode.Create);
             RSA rsa = new RSA();
             if (rb_encrypt.Checked)
@@ -67,7 +67,9 @@ namespace RSA
                 }
             }
             sr.Close();
-            sw.Close();
+            sw.Close();*/
+            Generator generator = new Generator();
+            generator.GeneratePrimeIntegers(101);
         }
 
         private void bt_openMessage_Click(object sender, EventArgs e)

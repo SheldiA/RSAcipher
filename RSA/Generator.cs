@@ -7,11 +7,31 @@ namespace RSA
 {
     class Generator
     {
-        public int GenerateBigPrimeInteger()
-        {
-            int result = 0;
+        List<int> primeNumbers;
 
-            return result;
+        public Generator()
+        {
+            primeNumbers = new List<int>();
+        }
+
+        public void GeneratePrimeIntegers(int number)
+        {
+            List<bool> allNumbers = new List<bool>();
+            allNumbers.Add(false);
+            allNumbers.Add(false);
+            for (int i = 2; i <= number; ++i)
+                allNumbers.Add(true);
+            for (int i = 2; i * i <= number; ++i)
+            {
+                if (allNumbers[i])
+                {
+                    for (int j = i * i; j <= number; j += i)
+                        allNumbers[j] = false;
+                }
+            }
+            for (int i = 0; i <= number; ++i)
+                if (allNumbers[i])
+                    primeNumbers.Add(i);
         }
 
         private int EuclideanAlgorithm(int a, int b)
