@@ -1,0 +1,7 @@
+D:\Project c#\RSA\RSA\bin\Debug\RSA.exe
+D:\Project c#\RSA\RSA\bin\Debug\RSA.pdb
+D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.FormMain.resources
+D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.Properties.Resources.resources
+D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.csproj.GenerateResource.Cache
+D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.exe
+D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.pdb
