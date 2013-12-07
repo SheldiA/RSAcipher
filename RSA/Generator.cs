@@ -7,7 +7,7 @@ namespace RSA
 {
     class Generator
     {
-        List<int> primeNumbers;
+        public List<int> primeNumbers;
 
         public Generator()
         {
@@ -56,7 +56,7 @@ namespace RSA
         {
             int result = 0;
 
-            for (int i = 4; i < primeInteger; ++i)
+            for (int i = 2000; i < primeInteger; ++i)
             {
                 if (EuclideanAlgorithm(primeInteger, i) == 1)
                 {

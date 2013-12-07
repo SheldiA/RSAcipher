@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace RSA
 {
@@ -44,13 +45,26 @@ namespace RSA
             return result;
         }
 
+        private int GetSumElements(byte[] arr, byte begin, byte offset)
+        {
+            int result = 0;
+
+            for (int i = begin; i < arr.Length; i += offset)
+                result += arr[i];
+
+            return result % 50;
+        }
+
         private void bt_calculate_Click(object sender, EventArgs e)
         {
-            /*FileStream sr = new FileStream(tb_messageFile.Text,FileMode.Open);
+            FileStream sr = new FileStream(tb_messageFile.Text,FileMode.Open);
             FileStream sw = new FileStream(tb_cipherFile.Text,FileMode.Create);
-            RSA rsa = new RSA();
+            byte[] hashArray = GetBytePassword(tb_key.Text);
+            RSA rsa = null;
+            //RSA rsa = new RSA(GetSumElements(hashArray,0,2),GetSumElements(hashArray,1,2),false);
             if (rb_encrypt.Checked)
             {
+                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), false);
                 for (int i = 0; i < sr.Length; ++i )
                 {
                     int messageByte = sr.ReadByte();
@@ -58,18 +72,38 @@ namespace RSA
                     WriteTwoByte(sw, cipherByte);
                 }
             }
-            else
+            if(rb_decrypt.Checked)
             {
+                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), false);
                 for (int i = 0; i < sr.Length / 2; ++i)
                 {
                     int cipherByte = GetIntFromTwoByte((byte)sr.ReadByte(), (byte)sr.ReadByte());
                     sw.WriteByte((byte)rsa.Decrypt(cipherByte));
                 }
             }
+
+            if (rb_breaking.Checked)
+            {
+                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), true);
+                for (int i = 0; i < sr.Length / 2; ++i)
+                {
+                    int cipherByte = GetIntFromTwoByte((byte)sr.ReadByte(), (byte)sr.ReadByte());
+                    sw.WriteByte((byte)rsa.Breaking(Int32.Parse(tb_r.Text),Int32.Parse(tb_publicKey.Text),cipherByte));
+                }
+            }
             sr.Close();
-            sw.Close();*/
-            Generator generator = new Generator();
-            generator.GeneratePrimeIntegers(101);
+            sw.Close();
+            lb_p.Text = "p = " + rsa.p;
+            lb_q.Text = "q = " + rsa.q;
+            lb_publicKey.Text = "public key = " + rsa.publicKey;
+            lb_privateKey.Text = "private key = " + rsa.privateKey;
+        }
+
+        private byte[] GetBytePassword(string initial_string)
+        {
+            MD5 md5hash = MD5.Create();
+            byte[] data = md5hash.ComputeHash(Encoding.UTF8.GetBytes(initial_string));
+            return data;
         }
 
         private void bt_openMessage_Click(object sender, EventArgs e)
