@@ -13,6 +13,7 @@ namespace RSA
 {
     public partial class FormMain : Form
     {
+        private readonly int maxPrimeNumber = 256;
         public FormMain()
         {
             InitializeComponent();
@@ -51,8 +52,7 @@ namespace RSA
 
             for (int i = begin; i < arr.Length; i += offset)
                 result += arr[i];
-
-            return result % 50;
+            return result % maxPrimeNumber;
         }
 
         private void bt_calculate_Click(object sender, EventArgs e)
@@ -64,7 +64,7 @@ namespace RSA
             //RSA rsa = new RSA(GetSumElements(hashArray,0,2),GetSumElements(hashArray,1,2),false);
             if (rb_encrypt.Checked)
             {
-                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), false);
+                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), false,maxPrimeNumber);
                 for (int i = 0; i < sr.Length; ++i )
                 {
                     int messageByte = sr.ReadByte();
@@ -74,7 +74,7 @@ namespace RSA
             }
             if(rb_decrypt.Checked)
             {
-                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), false);
+                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), false,maxPrimeNumber);
                 for (int i = 0; i < sr.Length / 2; ++i)
                 {
                     int cipherByte = GetIntFromTwoByte((byte)sr.ReadByte(), (byte)sr.ReadByte());
@@ -84,7 +84,7 @@ namespace RSA
 
             if (rb_breaking.Checked)
             {
-                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), true);
+                rsa = new RSA(GetSumElements(hashArray, 0, 2), GetSumElements(hashArray, 1, 2), true,maxPrimeNumber);
                 for (int i = 0; i < sr.Length / 2; ++i)
                 {
                     int cipherByte = GetIntFromTwoByte((byte)sr.ReadByte(), (byte)sr.ReadByte());

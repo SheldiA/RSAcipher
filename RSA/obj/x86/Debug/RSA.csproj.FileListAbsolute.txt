@@ -6,3 +6,11 @@ D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.csproj.GenerateResource.Cache
 D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.exe
 D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.pdb
 D:\Project c#\RSA\RSA\obj\x86\Debug\RSA.csprojResolveAssemblyReference.cache
+H:\912\RSA\RSA\obj\x86\Debug\RSA.exe
+H:\912\RSA\RSA\obj\x86\Debug\RSA.pdb
+H:\912\RSA\RSA\obj\x86\Debug\RSA.csprojResolveAssemblyReference.cache
+H:\912\RSA\RSA\obj\x86\Debug\RSA.FormMain.resources
+H:\912\RSA\RSA\obj\x86\Debug\RSA.Properties.Resources.resources
+H:\912\RSA\RSA\obj\x86\Debug\RSA.csproj.GenerateResource.Cache
+H:\912\RSA\RSA\bin\Debug\RSA.exe
+H:\912\RSA\RSA\bin\Debug\RSA.pdb
